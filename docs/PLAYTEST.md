@@ -1,7 +1,16 @@
 # Playtest log
 
-No gameplay tests have been performed at initialization.
+## 14 September 2026 — first playable candidate
+Automated Node.js v24.19.0 simulation checks execute the exact inline production script with a minimal DOM stub at 120 Hz. Run `node tests/physics.cjs`. Browser checks are pending deployment.
 
-For each session record: date, commit, browser, input method, successful route, recovery attempt, observed result, bugs, and next tuning decision. Distinguish automated checks from manual feel feedback.
+- Full success: hook; hoist 2.5 s; trolley right 3.85 s; coast 3 s; lower 2.5 s; wait 5 s; release. Accepted at simulation time 18.517 s, center x=895.373, after the full rest dwell.
+- Recovery: hook, lift 1 s, release with upward velocity, observe ballistic fall and persistent block at floor y=494, lower hook, rehook, then complete the same route successfully.
+- Fast trolley acceleration induces more than 25 px lateral cable deflection; winching preserves lateral motion.
+- A 0.2 s rightward corrective pulse after the tested swing setup reduced measured swing energy from 13983.82 to 10775.77 (about 23%) versus waiting for the same interval.
+- A fast airborne target pass never starts dwell. An attached resting block cannot win. Released rest for 1.4 s cannot win; continuing beyond 1.5 s can.
+- Pause freezes the complete simulation state; resume continues; reset clears motion, time, and input.
+- Barrier blocks a low crossing. A 60-second alternating-input stress sequence remains finite and above the floor.
 
-Acceptance scenario: The released load must rest inside the target at low velocity for a dwell interval. Verify a fast trolley move induces swing, countersteering can damp it, a dropped block persists and can be hooked again, and placement cannot succeed while flying through the target.
+A failed early route landed just outside the pad and correctly failed acceptance. The release test originally checked falling too soon: a rising load correctly continues upward before falling. The test now allows its ballistic arc.
+
+These are deterministic scripted input replays and state fixtures, not manual feel testing. External human testing remains necessary. Questions: Can a new player hook within 30 seconds? Can they explain a swing? Can they recover a drop without restarting? Is the small countersteer understandable? Does the final placement feel earned?

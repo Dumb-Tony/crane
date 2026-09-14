@@ -1,18 +1,15 @@
 # Crane
 
-Independent browser game prototype exploring Momentum, anticipation, and spectacle. Swing is initially a hazard and eventually a tool for skilled placement.
-
-## Status
-Design and repository initialized. First playable slice is the next milestone; see docs/PROTOTYPE_PLAN.md. No live deployment yet.
+A standalone side-view crane game about momentum and accurate placement.
 
 ## Play
-Once implemented, open index.html directly in a desktop browser. The first slice must remain a self-contained HTML file with no build or network requirement.
+Open `index.html` in a desktop browser. No installation, build, assets, or network is required. Public deployment verification is in progress.
 
-## Project map
-- docs/GDD.md — focused design and prototype boundaries
-- docs/PROTOTYPE_PLAN.md — first build and acceptance criteria
-- docs/PLAYTEST.md — actual test evidence and feedback
-- docs/SHARING.md — remote and static-host preparation
-- assets/ — future project-owned assets only
+A/D move the trolley. W/S or Up/Down operate the winch. Space hooks or releases when the hook is within the dashed pickup ring. P pauses; R restarts. Pointer controls are also available.
 
-This folder owns its own Git history. Do not initialize a repository in C:\\GPT_DEV or add sibling projects.
+Hook the concrete block, lift above the striped barrier, cross the yard, lower into the right-hand footprint, and release. The entire block must rest on the floor inside the footprint below 7 px/s for 1.5 seconds. Drops remain recoverable.
+
+## Implementation and tests
+Self-contained Canvas presentation, fixed 120 Hz physics, bounded catch-up, automatic pause on focus loss. This first slice is planar: no crane rotation, load rotation, wind, cable wrapping, or breakage. The cable is a unilateral point-mass constraint; the block uses axis-aligned collision. Low air damping leaves swing correction meaningful.
+
+Run `node tests/physics.cjs` for deterministic tests of the exact embedded game script, including complete success and recovery routes. These are automated input replays, not human feel testing. See `docs/PLAYTEST.md` for evidence and limitations and `docs/GDD.md` for design.

@@ -40,3 +40,10 @@ Readable shapes and silhouettes before decorative assets. Persistent short contr
 
 ## Validation gate
 A new player should start interacting within 30 seconds. Run an entire successful objective, intentionally cause a recoverable mistake, and complete after recovery. Record automated browser checks separately from manual feel testing. Ask playtesters what caused their failure, whether correction felt possible, and whether they wanted another attempt. Choose the next milestone from this evidence rather than adding content automatically.
+
+## Implemented M1 — 14 September 2026
+The first prototype uses a fixed side elevation. A/D trolley, W/S or arrows winch, Space hook/release, P pause, R restart; pointer controls mirror these actions. Crane rotation is deliberately omitted. Pickup begins with the hook in reach of a resting concrete block. A 150 px obstacle separates it from a 125 px target footprint.
+
+The load is a translating 52 px square with gravity, low air drag, inelastic ground/barrier contacts, and a unilateral cable constraint driven by trolley acceleration. Shortening the cable changes radial velocity without zeroing lateral velocity. The rendered cable attaches to the top of the block; its effective physics length measures to the mass center. There is no angular rigid-body physics, cable wrapping, rope collision, or wind. Contacts take precedence over cable extension during an obstructed pull. These simplifications are prototype boundaries.
+
+Acceptance requires the released block fully within the footprint, on the yard floor, below 7 px/s continuously for 1.5 seconds. Successful placement freezes the yard and presents time and release count. A restart is optional. No camera shake or audio is used. The next milestone is external human testing of control feel and recovery readability before adding content.
